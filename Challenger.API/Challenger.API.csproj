@@ -9,13 +9,19 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2"/>
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
     </ItemGroup>
 
     <ItemGroup>
       <Content Include="..\.dockerignore">
         <Link>.dockerignore</Link>
       </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Challenger.Application\Challenger.Application.csproj" />
+      <ProjectReference Include="..\Challenger.Domain\Challenger.Domain.csproj" />
+      <ProjectReference Include="..\Challenger.Infrastructure\Challenger.Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>
