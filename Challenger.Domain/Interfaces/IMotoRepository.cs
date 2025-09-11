@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Challenger.Domain.Entities;
 
 namespace Challenger.Domain.Interfaces
 {
-    internal interface IMotoRepository
+     public interface IMotoRepository:IRepository<Moto>
     {
+        Task<Moto?> GetByPlacaAsync(string placa);
     }
 }

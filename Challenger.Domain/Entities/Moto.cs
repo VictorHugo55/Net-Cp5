@@ -1,24 +1,25 @@
 ﻿using Challenger.Domain.Enum;
+using Challenger.Domain.ValueObjects;
 
 namespace Challenger.Domain.Entities;
 
 public class Moto : Audit
 {
     public Guid Id { get; private set; }
-    public string Placa { get; set; }
+    public PlacaMoto Placa { get; private set; }
 
-    public ModeloMoto Modelo { get; set; }
-    public StatusMoto Status { get; set; }
+    public ModeloMoto Modelo { get; private set; }
+    public StatusMoto Status { get; private set; }
 
-    public Guid PatioId { get; set; }
-    public Patio Patio { get; set; }
+    public Guid PatioId { get; private set; }
+    public Patio Patio { get; private set; }
     
     public Moto() { }
 
     public Moto(string placa, ModeloMoto modelo, Guid patioId, string createBy)
     {
         Id = Guid.NewGuid();
-        Placa = placa;
+        Placa = new PlacaMoto(placa);
         Modelo = modelo;
         Status = StatusMoto.INATIVA;
         PatioId = patioId;
@@ -29,7 +30,7 @@ public class Moto : Audit
 
     public void Update(string placa, ModeloMoto modelo, Guid patioId, string updatedBy)
     {
-        Placa = placa;
+        Placa = new PlacaMoto(placa);
         Modelo = modelo;
         PatioId = patioId;
 

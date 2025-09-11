@@ -1,6 +1,8 @@
 ﻿using Challenger.Application.DTOs.Requests;
 using Challenger.Application.DTOs.Responses;
 using System.IO;
+using Challenger.Domain.Entities;
+using Challenger.Domain.Interfaces;
 
 namespace Challenger.Application.UseCase;
 
@@ -20,7 +22,7 @@ public class CreatePatioUseCase
             request.Name,
             request.Cidade,
             request.Capacidade,
-            createdBy
+            createdBy   
         );
 
         // Salva no repositório

@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace Challenger.Domain.Interfaces
 {
-    internal interface IPatioRepository
+    public interface IPatioRepository:IRepository<Patio>
     {
-        Task<Patio?> GetByNameAsync(string name);
-        Task<List<Patio>> GetByCidadeAsync(string cidade);
+        Task<IEnumerable<Patio>> GetByCidadeAsync(string cidade);
     }
 }
