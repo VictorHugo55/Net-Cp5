@@ -6,7 +6,7 @@ using Challenger.Domain.Interfaces;
 
 namespace Challenger.Application.UseCase;
 
-public class CreateMotoUseCase
+public class CreateMotoUseCase :  ICreateMotoUseCase
 {
     private readonly IMotoRepository _motoRepository;
 
