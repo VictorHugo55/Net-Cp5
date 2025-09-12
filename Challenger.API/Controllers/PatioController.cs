@@ -63,6 +63,9 @@ namespace WebApplication2.Controllers
         [HttpPost]
         [ProducesResponseType(typeof(PatioResponse), (int)HttpStatusCode.Created)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType((int)HttpStatusCode.Created)]
+        [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<ActionResult<PatioResponse>> PostPatio(PatioRequest request)
         {
             try

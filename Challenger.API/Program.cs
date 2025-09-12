@@ -1,3 +1,4 @@
+using Challenger.Application.UseCase;
 using Challenger.Infrastructure;
 
 namespace WebApplication2;
@@ -17,6 +18,11 @@ public class Program
         
         builder.Services.AddDBContext(builder.Configuration);
         builder.Services.AddRepositories();
+        
+        builder.Services.AddScoped<ICreatePatioUseCase, CreatePatioUseCase>();
+        builder.Services.AddScoped<IUpdatePatioUseCase, UpdatePatioUseCase>();
+        builder.Services.AddScoped<ICreateMotoUseCase, CreateMotoUseCase>();
+        builder.Services.AddScoped<IUpdateMotoUseCase, UpdateMotoUseCase>();
 
         var app = builder.Build();
 
