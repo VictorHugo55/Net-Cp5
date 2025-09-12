@@ -2,8 +2,8 @@
 
 public enum StatusMoto
 {
-    DISPONIVEL, 
-    EM_USO, 
-    EM_MANUTENCAO, 
-    INATIVA
+    DISPONIVEL = 1, 
+    EM_USO = 2, 
+    EM_MANUTENCAO = 3, 
+    INATIVA = 4
 }

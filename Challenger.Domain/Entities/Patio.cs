@@ -7,7 +7,7 @@ public class Patio : Audit
     public string Cidade { get; private set; }
     public int Capacidade { get; private set; }
 
-    public List<Moto> Motos { get; private set; } = new List<Moto>();
+    public List<Moto> Motos { get; private set; }
 
     // Construtor para criação
     public Patio(string name, string cidade, int capacidade, string createdBy)

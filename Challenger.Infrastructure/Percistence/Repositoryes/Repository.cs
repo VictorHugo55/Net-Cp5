@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Challenger.Infrastructure.Percistence.Repositoryes
 {
-    internal class Repository<T> : IRepository<T> where T : class
+    public class Repository<T> : IRepository<T> where T : class
     {
         
 

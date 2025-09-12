@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Challenger.Infrastructure.Percistence.Repositoryes
 {
-    internal class PatioRepository : Repository<Patio>, IPatioRepository
+    public class PatioRepository : Repository<Patio>, IPatioRepository
     {
         private readonly CGContext _context;
         public PatioRepository(CGContext context) : base(context)

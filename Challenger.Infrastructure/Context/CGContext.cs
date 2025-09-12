@@ -4,7 +4,7 @@ using Challenger.Infrastructure.Percistence.Mappings;
 
 namespace Challenger.Infrastructure.Context
 {
-    internal class CGContext(DbContextOptions<CGContext> options) : DbContext(options)
+    public class CGContext(DbContextOptions<CGContext> options) : DbContext(options)
     {
         
         public DbSet<Moto> Motos { get; set; }

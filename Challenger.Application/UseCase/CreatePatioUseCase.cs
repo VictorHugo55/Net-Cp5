@@ -6,7 +6,7 @@ using Challenger.Domain.Interfaces;
 
 namespace Challenger.Application.UseCase;
 
-public class CreatePatioUseCase
+public class CreatePatioUseCase : ICreatePatioUseCase
 {
     private readonly IPatioRepository _patioRepository;
 

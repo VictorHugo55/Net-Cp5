@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Challenger.Infrastructure.Percistence.Repositoryes
 {
-    internal class MotoRepository : Repository<Moto>, IMotoRepository
+    public class MotoRepository : Repository<Moto>, IMotoRepository
     {
         private readonly CGContext _context;
 

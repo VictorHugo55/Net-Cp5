@@ -2,7 +2,7 @@
 
 public class PatioRequest
 {
-    public string Name { get; set; } = string.Empty;
-    public string Cidade { get; set; } = string.Empty;
+    public string Name { get; set; } 
+    public string Cidade { get; set; } 
     public int Capacidade { get; set; }
 }

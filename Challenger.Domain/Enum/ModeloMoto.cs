@@ -8,8 +8,8 @@ namespace Challenger.Domain.Enum
 {
     public enum ModeloMoto
     {   
-        SPORT,
-        POP,
-        ELETRICA
+        SPORT = 1,
+        POP = 2,
+        ELETRICA = 3
     }
 }
