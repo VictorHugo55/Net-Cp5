@@ -23,6 +23,7 @@ public class CreateMotoUseCase :  ICreateMotoUseCase
         var moto = new Moto(
             placaVO.Valor,  // VO usado no construtor da entidade
             request.Modelo,
+            request.Status,
             request.PatioId,
             createdBy
         );

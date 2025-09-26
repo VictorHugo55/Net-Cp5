@@ -16,12 +16,12 @@ public class Moto : Audit
     
     public Moto() { }
 
-    public Moto(string placa, ModeloMoto modelo, Guid patioId, string createBy)
+    public Moto(string placa, ModeloMoto modelo,StatusMoto status, Guid patioId, string createBy)
     {
         Id = Guid.NewGuid();
         Placa = new PlacaMoto(placa);
         Modelo = modelo;
-        Status = StatusMoto.INATIVA;
+        Status = status;
         PatioId = patioId;
 
         SetCreated(createBy);

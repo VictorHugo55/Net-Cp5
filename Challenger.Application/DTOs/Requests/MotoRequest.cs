@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Challenger.Domain;
 using Challenger.Domain.Enum;
 
 namespace Challenger.Application.DTOs.Requests;
@@ -11,6 +12,9 @@ public class MotoRequest
     
     [Required(ErrorMessage = "O modelo é obrigatório")]
     public ModeloMoto Modelo { get; set; }
+    
+    [Required(ErrorMessage = "O status da moto é obrigatório")]
+    public StatusMoto Status { get; set; }
     
     [Required(ErrorMessage = "O id do patio é obrigatório")]
     public Guid PatioId { get; set; }
