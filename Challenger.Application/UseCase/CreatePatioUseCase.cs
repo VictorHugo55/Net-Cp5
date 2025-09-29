@@ -1,6 +1,7 @@
 ﻿using Challenger.Application.DTOs.Requests;
 using Challenger.Application.DTOs.Responses;
 using System.IO;
+using Challenger.Application.pagination;
 using Challenger.Domain.Entities;
 using Challenger.Domain.Interfaces;
 
@@ -9,6 +10,7 @@ namespace Challenger.Application.UseCase;
 public class CreatePatioUseCase : ICreatePatioUseCase
 {
     private readonly IPatioRepository _patioRepository;
+    private ICreatePatioUseCase _createPatioUseCaseImplementation;
 
     public CreatePatioUseCase(IPatioRepository patioRepository)
     {
@@ -35,5 +37,10 @@ public class CreatePatioUseCase : ICreatePatioUseCase
             patio.Cidade,
             patio.Capacidade
         );
+    }
+
+    public Task<PaginatedResult<PatioSummary>> ExecuteAsync(PageRequest page, PatioQuery? filter = null, CancellationToken ct = default)
+    {
+        return _patioRepository.GetPatioPageAsync(page, filter, ct);
     }
 }

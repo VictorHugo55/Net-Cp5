@@ -1,5 +1,6 @@
 ﻿using Challenger.Application.DTOs.Requests;
 using Challenger.Application.DTOs.Responses;
+using Challenger.Application.pagination;
 using Challenger.Domain.ValueObjects;
 using Challenger.Domain.Entities;
 using Challenger.Domain.Interfaces;
@@ -9,11 +10,14 @@ namespace Challenger.Application.UseCase;
 public class CreateMotoUseCase :  ICreateMotoUseCase
 {
     private readonly IMotoRepository _motoRepository;
+    private ICreateMotoUseCase _createMotoUseCaseImplementation;
 
     public CreateMotoUseCase(IMotoRepository motoRepository)
     {
         _motoRepository = motoRepository;
     }
+
+    
 
     public async Task<MotoResponse> Execute(MotoRequest request, string createdBy)
     {
@@ -37,5 +41,12 @@ public class CreateMotoUseCase :  ICreateMotoUseCase
             moto.Status,
             moto.PatioId
         );
+        
+        
+    }
+
+    public Task<PaginatedResult<MotoSummary>> ExecuteAsync(PageRequest page, MotoQuery? filter = null, CancellationToken ct = default)
+    {
+        return _motoRepository.GetPageAsync(page, filter, ct);
     }
 }

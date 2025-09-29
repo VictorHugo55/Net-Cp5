@@ -1,6 +1,7 @@
 using System.Net;
 using Challenger.Application.DTOs.Requests;
 using Challenger.Application.DTOs.Responses;
+using Challenger.Application.pagination;
 using Challenger.Application.UseCase;
 using Microsoft.AspNetCore.Mvc;
 using Challenger.Domain.Interfaces;
@@ -56,6 +57,14 @@ namespace WebApplication2.Controllers
             ));
         }
 
+        [HttpGet("paged")]
+        public Task<PaginatedResult<MotoSummary>> GetPage([FromQuery] PageRequest pageRequest,
+            [FromQuery] MotoQuery motoQuery)
+        {
+            return createMotoUseCase.ExecuteAsync(pageRequest, motoQuery);
+        }
+            
+            
         // GET: api/Moto/5
         /// <summary>
         /// busca as motos por id

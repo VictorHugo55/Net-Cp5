@@ -5,6 +5,7 @@ using System.Net;
 using System.Threading.Tasks;
 using Challenger.Application.DTOs.Requests;
 using Challenger.Application.DTOs.Responses;
+using Challenger.Application.pagination;
 using Challenger.Application.UseCase;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -41,24 +42,6 @@ namespace WebApplication2.Controllers
         /// Retorna 200 (OK) com a lista de patios.
         /// </returns>
         /// <response code="200">Retorna todos os patios.</response>
-        /// <remarks>
-        /// Exemplo de resposta (200 OK):
-        /// 
-        ///     [
-        ///         {
-        ///             "id": "2f7d05d6-4c93-4f0f-9e4b-7f41c34cb123",
-        ///             "name": "Pátio Central",
-        ///             "cidade": "São Paulo",
-        ///             "capacidade": 150
-        ///         },
-        ///         {
-        ///             "id": "c6b2f64e-23a9-482d-b4f2-2fbc1e23b999",
-        ///             "name": "Pátio Zona Sul",
-        ///             "cidade": "Campinas",
-        ///             "capacidade": 80
-        ///         }
-        ///     ]
-        /// </remarks>
 
         [HttpGet]
         public async Task<IEnumerable<PatioResponse>> GetPatios()
@@ -66,6 +49,17 @@ namespace WebApplication2.Controllers
             var patios = await _patioRepository.GetAllAsync();
             return patios.Select(p => new PatioResponse(p.Id, p.Name, p.Cidade, p.Capacidade));
         }
+        
+        // GET: Pagination
+        [HttpGet("paged")]
+        public Task<PaginatedResult<PatioSummary>> GetPage([FromQuery] PageRequest pageRequest,
+            [FromQuery] PatioQuery patioQuery)
+        {
+            return _createPatioUseCase.ExecuteAsync(pageRequest, patioQuery);
+        }
+        
+        
+        
 
         // GET: api/Patio/5
         /// <summary>
@@ -276,5 +270,7 @@ namespace WebApplication2.Controllers
             await _patioRepository.DeleteAsync(patio);
             return NoContent();
         }
+        
+        
     }
 }
