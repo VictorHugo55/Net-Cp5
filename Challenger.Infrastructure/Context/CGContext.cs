@@ -9,6 +9,7 @@ namespace Challenger.Infrastructure.Context
         
         public DbSet<Moto> Motos { get; set; }
         public DbSet<Patio> Patios { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

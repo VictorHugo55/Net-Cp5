@@ -1,11 +1,12 @@
-﻿namespace Challenger.Domain.Entities;
+﻿using Challenger.Domain.ValueObjects;
+
+namespace Challenger.Domain.Entities;
 
 public class User : Audit
 {
-    public Guid ID { get; private set; }
+    public Guid Id { get; private set; }
     public string Username { get; private set; }
-    public string Email { get; private set; }
-    public string Password { get; private set; }
+    public UserCredentials Credentials { get; private set; }
 
     public User()
     {
@@ -14,19 +15,17 @@ public class User : Audit
     
     public User( string username, string email, string password, string createdBy)
     {
-        ID = Guid.NewGuid();
+        Id = Guid.NewGuid();
         Username = username;
-        Email = email; 
-        Password = password;
+        Credentials = new UserCredentials(email, password);
         
         SetCreated(createdBy);
     }
 
-    public void Update(string Username, string Email, string Password, string updatedBy)
+    public void Update(string username, string email, string password, string updatedBy)
     {
-        this.Username = Username;
-        this.Email = Email;
-        this.Password = Password;
+        Username = username;
+        Credentials = new UserCredentials(email, password);
         
         SetUpdated(updatedBy);
     }
