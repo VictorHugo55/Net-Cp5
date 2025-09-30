@@ -4,9 +4,10 @@ namespace Challenger.Domain.ValueObjects;
 
 public class UserCredentials
 {
-    public string Email { get; }
-    public string Senha { get; }
+    public string Email { get; private set; }
+    public string Senha { get; private set; }
 
+    
     // Construtor
     public UserCredentials(string email, string senha)
     {
