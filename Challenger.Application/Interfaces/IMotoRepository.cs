@@ -16,6 +16,7 @@ namespace Challenger.Domain.Interfaces
         Task<PaginatedResult<MotoSummary>> GetPageAsync(
             PageRequest page, 
             MotoQuery? filter = null, 
-            CancellationToken ct = default);
+            CancellationToken ct = default
+        );
     }
 }

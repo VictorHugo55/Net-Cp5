@@ -1,18 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Threading.Tasks;
 using Challenger.Application.DTOs.Requests;
 using Challenger.Application.DTOs.Responses;
 using Challenger.Application.pagination;
 using Challenger.Application.UseCase;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Challenger.Domain.Entities;
 using Challenger.Domain.Interfaces;
-using Challenger.Infrastructure.Context;
 
 namespace WebApplication2.Controllers
 {
