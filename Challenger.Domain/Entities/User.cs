@@ -6,28 +6,33 @@ public class User : Audit
 {
     public Guid Id { get; private set; }
     public string Username { get; private set; }
-    public UserCredentials Credentials { get; private set; }
+    public UserEmail Email { get; private set; }
+    public UserSenha Senha { get; private set; }
 
     public User()
     {
         
     }
     
-    public User( string username, string email, string password, string createdBy)
+    public User(string username, string email, string senha, string createBy)
     {
         Id = Guid.NewGuid();
         Username = username;
-        Credentials = new UserCredentials(email, password);
+        Email = new UserEmail(email);
+        Senha = new UserSenha(senha);
         
-        SetCreated(createdBy);
+        SetCreated(createBy);
     }
-
-    public void Update(string username, string email, string password, string updatedBy)
+    
+    public void Update(string username, string email, string senha, string updatedBy)
     {
         Username = username;
-        Credentials = new UserCredentials(email, password);
+        Email = new UserEmail(email);
+        Senha = new UserSenha(senha);
         
         SetUpdated(updatedBy);
     }
+    
+    
     
 }

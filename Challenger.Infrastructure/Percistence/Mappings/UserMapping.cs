@@ -18,13 +18,13 @@ public class UserMapping : IEntityTypeConfiguration<User>
         builder.Property(u => u.Username)
             .HasMaxLength(100)
             .IsRequired();
-
-
-        builder.Property(u => u.Credentials)
-            .HasConversion(
-                c => JsonSerializer.Serialize(c), // Salva como JSON
-                s => JsonSerializer.Deserialize<UserCredentials>(s)! // Reconstrói o objeto
-            )
+        
+        builder.Property(u => u.Email)
+            .HasConversion(u => u.Valor, v => new UserEmail(v))
+            .IsRequired();
+        
+        builder.Property(u => u.Senha)
+            .HasConversion(u => u.Valor, v => new UserSenha(v))
             .IsRequired();
     }
 }

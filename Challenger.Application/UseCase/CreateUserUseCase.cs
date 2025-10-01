@@ -19,13 +19,15 @@ public class CreateUserUseCase : ICreateUserUseCase
     
     public async Task<UserResponse> Execute(UserRequest request, string createdBy)
     {
-        var credentials = new UserCredentials(request.Email, request.Senha);
+        var emailVO = new UserEmail(request.Email);
+        var senhaVO = new UserSenha(request.Senha);
 
         var user = new User(
+            emailVO.Valor,
+            senhaVO.Valor,
             request.Username,
-            credentials.Email,
-            credentials.Senha,
             createdBy
+            
         );
         
         await _userRepository.AddAsync(user);
@@ -33,8 +35,8 @@ public class CreateUserUseCase : ICreateUserUseCase
         return new UserResponse(
             user.Id,
             user.Username,
-            user.Credentials.Email,
-            user.Credentials.Senha
+            user.Email.ToString(),
+            user.Senha.ToString()
         );
     }
 

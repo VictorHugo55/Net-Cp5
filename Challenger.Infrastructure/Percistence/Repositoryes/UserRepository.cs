@@ -27,7 +27,7 @@ public class UserRepository: Repository<User>, IUserRepository
             if (!string.IsNullOrWhiteSpace(filter.Email))
             {
                 var email = filter.Email.Trim();
-                query = query.Where(u => u.Credentials.Email.Contains(email));
+                query = query.Where(u => u.Email.Valor.Contains(email));
             }
 
             if (filter.FromCreatedAtUc is not null)
@@ -51,7 +51,7 @@ public class UserRepository: Repository<User>, IUserRepository
 
         summaries.AddRange(items.Select(item => new UserSummary
         {
-            Id = item.Id, Username = item.Username, Email = item.Credentials.Email, Senha = item.Credentials.Senha
+            Id = item.Id, Username = item.Username, Email = item.Email.Valor, Senha = item.Senha.Valor
         }));
         
         return new PaginatedResult<UserSummary>(summaries, totalCount, page.Page, page.PageSize);
