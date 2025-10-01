@@ -26,6 +26,7 @@ namespace Challenger.Infrastructure
         {
             services.AddScoped<IMotoRepository, MotoRepository>();
             services.AddScoped<IPatioRepository, PatioRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
             return services;
         }
     }

@@ -1,16 +1,15 @@
 ﻿using Challenger.Application.DTOs.Requests;
 using Challenger.Application.DTOs.Responses;
 using Challenger.Application.pagination;
-using Challenger.Domain.ValueObjects;
 using Challenger.Domain.Entities;
 using Challenger.Domain.Interfaces;
+using Challenger.Domain.ValueObjects;
 
-namespace Challenger.Application.UseCase;
+namespace Challenger.Application.UseCase.CreateMoto;
 
 public class CreateMotoUseCase :  ICreateMotoUseCase
 {
     private readonly IMotoRepository _motoRepository;
-    private ICreateMotoUseCase _createMotoUseCaseImplementation;
 
     public CreateMotoUseCase(IMotoRepository motoRepository)
     {

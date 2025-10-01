@@ -18,6 +18,7 @@ namespace Challenger.Infrastructure.Context
             // Aplica os mappings separados
             modelBuilder.ApplyConfiguration(new MotoMapping());
             modelBuilder.ApplyConfiguration(new PatioMapping());
+            modelBuilder.ApplyConfiguration(new UserMapping());
         }
     }
 }

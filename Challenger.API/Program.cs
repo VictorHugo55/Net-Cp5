@@ -1,5 +1,8 @@
 using System.Reflection;
 using Challenger.Application.UseCase;
+using Challenger.Application.UseCase.CreateMoto;
+using Challenger.Application.UseCase.CreateUser;
+using Challenger.Application.UseCase.UpdateUser;
 using Challenger.Infrastructure;
 
 namespace WebApplication2;
@@ -37,7 +40,9 @@ public class Program
         builder.Services.AddScoped<IUpdatePatioUseCase, UpdatePatioUseCase>();
         builder.Services.AddScoped<ICreateMotoUseCase, CreateMotoUseCase>();
         builder.Services.AddScoped<IUpdateMotoUseCase, UpdateMotoUseCase>();
-
+        builder.Services.AddScoped<ICreateUserUseCase, CreateUserUseCase>();
+        builder.Services.AddScoped<IUpdateUserUseCase, UpdateUserUseCase>();
+        
         var app = builder.Build();
 
         // Configure the HTTP request pipeline.

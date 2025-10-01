@@ -10,7 +10,7 @@ public interface ICreateUserUseCase
     
     Task<PaginatedResult<UserSummary>> ExecuteAsync(
         PageRequest page,
-        MotoQuery? filter = null,
+        UserQuery? filter = null,
         CancellationToken ct = default
     );
 }
