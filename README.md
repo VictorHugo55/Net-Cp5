@@ -99,6 +99,16 @@ Você pode testar os endpoints usando:
       Retorna os dados da moto com a placa especificada.
 ---
 
+**POST /api/users**
+
+```json
+{
+  "username": "DustSams",
+  "email" : "victorhugo@gmail.com",
+  "senha" : "Fiapm1234"
+}
+```
+
 ## 👥 Integrantes
 
 - **Gabriel Gomes Mancera** - RM: 555427  
