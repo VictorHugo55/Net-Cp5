@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Challenger.Domain.Entities;
 
 namespace Challenger.Application.DTOs.Requests;
 
@@ -10,4 +11,5 @@ public class UserRequest
     public string Email { get; set; } = string.Empty;
     [Required(ErrorMessage = "A senha é obrigatória")]
     public string Senha { get; set; } = string.Empty;
+    
 }

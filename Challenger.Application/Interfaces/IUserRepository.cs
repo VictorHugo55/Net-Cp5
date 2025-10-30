@@ -4,11 +4,11 @@ using Challenger.Domain.Entities;
 
 namespace Challenger.Domain.Interfaces;
 
-public interface IUserRepository:IRepository<User>
+public interface IUserRepository
 {
-    Task<PaginatedResult<UserSummary>> GetPageAsync(
-        PageRequest page, 
-        UserQuery? filter = null, 
-        CancellationToken ct = default
-    );
+    Task<User?> GetByIdAsync(Guid id);
+    Task<List<User>> GetAllAsync();
+    Task CreateAsync(User user);
+    Task UpdateAsync(User user);
+    Task DeleteAsync(Guid id);
 }

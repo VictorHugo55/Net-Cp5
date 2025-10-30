@@ -56,22 +56,14 @@ namespace WebApplication2.Controllers
                 u.Senha.Valor
             ));
         }
-
-        [HttpGet("paged")]
-        public Task<PaginatedResult<UserSummary>> GetPage([FromQuery] PageRequest pageRequest,
-            [FromQuery] UserQuery userQuery)
-        {
-            return createUserUseCase.ExecuteAsync(pageRequest, userQuery);
-        }
         
-
         // GET: api/User/5
         /// <summary>
         /// 
         /// </summary>
         /// <param name="id">O ID do Usuario a ser consultado</param>
         /// <returns></returns>
-        [HttpGet("{id}")]
+        [HttpGet("{id:guid}")]
         public async Task<ActionResult<UserResponse>> GetUser(Guid id)
         {
             var user = await userRepository.GetByIdAsync(id);
@@ -113,7 +105,7 @@ namespace WebApplication2.Controllers
 
         // PUT: api/User/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [HttpPut("{id:guid}")]
         [ProducesResponseType((int)HttpStatusCode.NoContent)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
@@ -140,7 +132,7 @@ namespace WebApplication2.Controllers
         }
 
         // DELETE: api/User/5
-        [HttpDelete("{id}")]
+        [HttpDelete("{id:guid}")]
         [ProducesResponseType((int)HttpStatusCode.NoContent)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
@@ -149,7 +141,7 @@ namespace WebApplication2.Controllers
             var user = await userRepository.GetByIdAsync(id);
             if (user == null) return NotFound("Usuário não encontrado");
             
-            await userRepository.DeleteAsync(user);
+            await userRepository.DeleteAsync(id);
             return NoContent();
         }
         

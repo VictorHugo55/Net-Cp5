@@ -4,56 +4,38 @@ using Challenger.Application.pagination;
 using Challenger.Domain.Entities;
 using Challenger.Domain.Interfaces;
 using Challenger.Infrastructure.Context;
+using Challenger.Infrastructure.MongoDB;
 using Microsoft.EntityFrameworkCore;
+using MongoDB.Driver;
 
 namespace Challenger.Infrastructure.Percistence.Repositoryes;
 
-public class UserRepository: Repository<User>, IUserRepository
-{   
-    private readonly CGContext _context;
-    private IUserRepository _userRepositoryImplementation;
-    
-    public UserRepository(CGContext context) : base(context)
+public class UserRepository(MongoContext context):  IUserRepository
+{
+    private readonly IMongoCollection<User> _collection = context.Database.GetCollection<User>("Users");
+
+    public async Task<List<User>> GetAllAsync()
     {
-        _context = context;
+        return await _collection.Find(_ => true).ToListAsync();
     }
-    public async Task<PaginatedResult<UserSummary>> GetPageAsync(PageRequest page, UserQuery? filter = null, CancellationToken ct = default)
+
+    public async Task<User?> GetByIdAsync(Guid id)
     {
-        page.EnsureValid();
+        return await _collection.Find(u => u.Id == id).FirstOrDefaultAsync();
+    }
 
-        IQueryable<User> query = _context.Users.AsNoTracking();
-        if (filter is not null)
-        {
-            if (!string.IsNullOrWhiteSpace(filter.Email))
-            {
-                var email = filter.Email.Trim();
-                query = query.Where(u => u.Email.Valor.Contains(email));
-            }
+    public async Task CreateAsync(User user)
+    {
+        await _collection.InsertOneAsync(user);
+    }
 
-            if (filter.FromCreatedAtUc is not null)
-                query = query.Where(u => u.CreatedAt >= filter.FromCreatedAtUc);
-            query = filter.DescendingByCreatedAt
-                ? query.OrderByDescending(u => u.CreatedAt)
-                : query.OrderBy(u => u.CreatedAt);
-        }
-        else
-        {
-            query.OrderByDescending(u => u.CreatedAt);
-        }
-        
-        var totalCount = await query.CountAsync(cancellationToken: ct);
-        
-        var items = await query
-            .Skip(page.Offset)
-            .Take(page.PageSize)
-            .ToListAsync(ct);
-        List<UserSummary> summaries = [];
+    public async Task UpdateAsync(User user)
+    {
+        await _collection.ReplaceOneAsync(u => u.Id == user.Id, user);
+    }
 
-        summaries.AddRange(items.Select(item => new UserSummary
-        {
-            Id = item.Id, Username = item.Username, Email = item.Email.Valor, Senha = item.Senha.Valor
-        }));
-        
-        return new PaginatedResult<UserSummary>(summaries, totalCount, page.Page, page.PageSize);
+    public async Task DeleteAsync(Guid id)
+    {
+        await _collection.DeleteOneAsync(u => u.Id == id);
     }
 }

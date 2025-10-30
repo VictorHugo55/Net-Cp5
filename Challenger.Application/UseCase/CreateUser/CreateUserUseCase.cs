@@ -29,7 +29,7 @@ public class CreateUserUseCase : ICreateUserUseCase
             
         );
         
-        await _userRepository.AddAsync(user);
+        await _userRepository.CreateAsync(user);
 
         return new UserResponse(
             user.Id,
@@ -37,10 +37,8 @@ public class CreateUserUseCase : ICreateUserUseCase
             user.Email.ToString(),
             user.Senha.ToString()
         );
+
     }
 
-    public Task<PaginatedResult<UserSummary>> ExecuteAsync(PageRequest page, UserQuery? filter = null, CancellationToken ct = default)
-    {
-        return _userRepository.GetPageAsync(page, filter, ct);
-    }
+   
 }
