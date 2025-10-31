@@ -47,13 +47,24 @@ cd NET-MOTTU-main
 ```bash
 dotnet restore
 ```
-### Configure a string de coexão no arquivo appsettings.json:
+---
+###⚙️ Configurar Banco de Dados
+##🗄️ MySQL (Padrão)
+## Configure a string de conexão no arquivo appsettings.json:
   ```json
     "ConnectionStrings": {
     "MotoGridDB":"server=localhost;port=3306;database=MotoGridDB;user=root;password=SuaSenhaSegura;"
     }
   ```
-
+##🍃 MongoDB (Apenas para a entidade User)
+##Para usar o MongoDB, configure o bloco no appsettings.json:
+```json
+  "MongoDb": {
+    "ConnectionString": "mongodb://localhost:27017",
+    "DatabaseName": "MotoGridDb"
+  },
+```
+---
 ### ▶️ Executar a API
 ```bash
 cd Challenger.API
@@ -108,7 +119,16 @@ Você pode testar os endpoints usando:
   "senha" : "Fiapm1234"
 }
 ```
-
+---
+###🧩 Versionamento de API
+- O projeto possui suporte a múltiplas versões de API, configuradas via Asp.Versioning.
+- A versão padrão é v1.0
+- A versão v2.0 inclui novos endpoints(Ainda sem muita modificação), como o MotoV2Controller e UserController.
+##Acesso via Swagger:
+```bash
+  /swagger/v1/swagger.json → Versão 1
+  /swagger/v2/swagger.json → Versão 2
+```
 ## 👥 Integrantes
 
 - **Gabriel Gomes Mancera** - RM: 555427  
@@ -118,5 +138,9 @@ Você pode testar os endpoints usando:
 ---
 
 ## 📌 Observações
-- Este projeto é voltado para execução **local**.  
+O MongoDB é usado apenas na entidade User, sem impactar outras partes do sistema.
+
+Se a conexão com o MongoDB não estiver configurada, o restante do sistema (MySQL) funcionará normalmente.
+
+O Swagger exibirá automaticamente as versões da API (v1 e v2) detectadas. 
   
