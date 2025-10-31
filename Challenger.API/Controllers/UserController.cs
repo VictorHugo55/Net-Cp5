@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using Asp.Versioning;
 using Challenger.Application.DTOs.Requests;
 using Challenger.Application.DTOs.Responses;
 using Challenger.Application.pagination;
@@ -16,9 +17,10 @@ using Challenger.Infrastructure.Context;
 
 namespace WebApplication2.Controllers
 {
-   
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/v{version:apiVersion}/User")]
+    [Produces("application/json")]
+    [ApiVersion("2.0")]
     public class UserController(
         ICreateUserUseCase createUserUseCase,
         IUpdateUserUseCase updateUserUseCase,

@@ -8,15 +8,16 @@ using Microsoft.AspNetCore.Mvc;
 using Challenger.Domain.Interfaces;
 namespace WebApplication2.Controllers
 {
-    /// <inheritdoc />
-    [Route("api/v{version:apiVersion}/Moto")]
+    
     [ApiController]
-    [ApiVersion(1.0)]
-    public class MotoController(
+    [Route("api/v{version:apiVersion}/[controller]")]
+    [Produces("application/json")]
+    [ApiVersion("2.0")]
+    public class MotoV2Controller(
         ICreateMotoUseCase createMotoUseCase,
         IUpdateMotoUseCase updateMotoUseCase,
         IMotoRepository motoRepository)
-        : ControllerBase
+        : ControllerBase 
     {
         // GET: api/
         /// <summary>

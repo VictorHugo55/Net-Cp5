@@ -1,4 +1,5 @@
 using System.Net;
+using Asp.Versioning;
 using Challenger.Application.DTOs.Requests;
 using Challenger.Application.DTOs.Responses;
 using Challenger.Application.pagination;
@@ -8,8 +9,9 @@ using Challenger.Domain.Interfaces;
 
 namespace WebApplication2.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v{version:apiVersion}/Patio")]
     [ApiController]
+    [ApiVersion(1.0)]
     public class PatioController : ControllerBase
     {
         private readonly ICreatePatioUseCase _createPatioUseCase;
